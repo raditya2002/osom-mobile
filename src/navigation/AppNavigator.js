@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import { useAuth } from "../context/AuthContext";
 import Start from "../screens/StartScreen";
+import { useAuth } from "../context/AuthContext";
 // import { Icon } from "react-native-vector-icons/Icon";
 
 const Stack = createNativeStackNavigator();
@@ -38,7 +38,7 @@ export default function AppNavigator() {
   const auth = useAuth();
 
   return (
-    <Stack.Navigator initialRouteName="Start">
+    <Stack.Navigator initialRouteName="Login">
       {auth.user ? (
         <>
           {/* <Stack.Screen
@@ -46,14 +46,26 @@ export default function AppNavigator() {
                         component={TabNavigator}
                         options={{ title: "Main", headerShown: false }}
                     /> */}
+          {/* <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{ headerShown: false }}
+          /> */}
+        </>
+      ) : (
+        <>
+          {/* Nanti Matiin aja ya ini fif buat ngetest fungsi Validasi doang */}
+          <Stack.Screen
+            name="StartScreen"
+            component={Start}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Dashboard"
             component={Dashboard}
             options={{ headerShown: false }}
           />
-        </>
-      ) : (
-        <>
+          {/* Sampai sini  buat ngetestnya */}
           <Stack.Screen
             name="Start"
             component={Start}

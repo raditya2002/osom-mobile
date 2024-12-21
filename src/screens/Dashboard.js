@@ -7,7 +7,11 @@ export default function Dashboard({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Ini Dashboard</Text>
-      <Button title="Logout" onPress={logout} />
+      {/* <Button title="Logout" onPress={logout} /> */}
+      <Button
+        title="Logout"
+        onPress={() => navigation.navigate("StartScreen")}
+      />
     </SafeAreaView>
   );
 }
