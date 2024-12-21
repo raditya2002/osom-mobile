@@ -3,10 +3,10 @@ import {
   StyleSheet,
   ImageBackground,
   View,
-  Text,
-  TouchableOpacity,
+  Text
 } from "react-native";
 import { useFonts } from "expo-font";
+import CustomButton from "../components/CustomButton";
 
 export default function Start({ navigation }) {
   const handleLogin = () => {
@@ -37,15 +37,21 @@ export default function Start({ navigation }) {
           <Text style={styles.title}>Welcome to </Text>
           <Text style={styles.titleOsom}>OSOM!</Text>
           <Text style={styles.subtitle}>Rock, Paper, Scissor</Text>
-          <TouchableOpacity style={styles.buttonLogin} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonRegister}
-            onPress={handleRegister}
-          >
-            <Text style={styles.buttonTextRegister}>Register</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonsContainer}>
+            <CustomButton
+              title="Login"
+              onPress={handleLogin}
+              bgColor='white'
+              textColor='black'
+            />
+            <CustomButton
+              title="Register"
+              onPress={handleRegister}
+              bgColor='#F8E51E'
+              textColor='white'
+            />
+          </View>
+
         </View>
       </SafeAreaView>
     </ImageBackground>
@@ -57,6 +63,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonsContainer: {
+    height: 90,
+    width: '100%',
+    justifyContent: 'space-between'
   },
   background: {
     flex: 1,

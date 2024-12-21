@@ -9,11 +9,16 @@ import {
   Modal,
   ScrollView,
   Button,
+  Alert,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useFonts } from "expo-font";
 import { Checkbox } from "react-native-paper";
+
+import { restLogin } from "../api/auth";
+import TextInputAuth from "../components/TextInputAuth";
+import CustomButton from "../components/CustomButton";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -49,11 +54,19 @@ export default function Login({ navigation }) {
     navigation.navigate("Register");
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (validate()) {
-      navigation.navigate("Dashboard");
+      try {
+        const userData = {
+          email: email,
+          password: password
+        }
+        const res = await restLogin(userData)
+        setLoginState(res.token)
+      } catch (e) {
+        Alert.alert(e.message)
+      }
     }
-    // setLoginState("DummyToken");
   };
 
   const [fontsLoaded] = useFonts({
@@ -72,8 +85,7 @@ export default function Login({ navigation }) {
       <SafeAreaView style={styles.container}>
         <View style={styles.card}>
           <Text style={styles.title}>OSOM!</Text>
-          <TextInput
-            style={styles.input}
+          <TextInputAuth
             placeholder="Username atau Email"
             value={email}
             onChangeText={(text) => setEmail(text)}
@@ -84,8 +96,7 @@ export default function Login({ navigation }) {
           {errors.messageEmailError && (
             <Text style={styles.errorText}>{errors.messageEmailError}</Text>
           )}
-          <TextInput
-            style={styles.input}
+          <TextInputAuth
             placeholder="Password"
             value={password}
             textContentType="password"
@@ -154,9 +165,12 @@ export default function Login({ navigation }) {
             </View>
           </Modal>
 
-          <TouchableOpacity style={styles.buttonLogin} onPress={handleLogin}>
-            <Text style={styles.textButton}>Login</Text>
-          </TouchableOpacity>
+          <CustomButton
+            title='Login'
+            onPress={handleLogin}
+            bgColor='#F8E51E'
+            textColor='white'
+          />
           <TouchableOpacity onPress={handleRegister}>
             <Text style={styles.link}>
               Dont't have an account?{" "}
@@ -178,15 +192,6 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: "cover",
-  },
-  buttonLogin: {
-    width: "100%",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    backgroundColor: "#F8E51E",
-    borderRadius: 30,
-    alignItems: "center",
-    justifyContent: "center",
   },
   buttonModal: {
     backgroundColor: "#188A8D",
@@ -221,12 +226,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 30,
     fontFamily: "CherryBombOne",
-  },
-  textButton: {
-    fontSize: 16,
-    color: "white",
-    fontWeight: "bold",
-    fontFamily: "MontserratReg",
   },
   termsContainer: {
     flexDirection: "row",
@@ -315,17 +314,5 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     color: "#333",
     textAlign: "justify",
-  },
-  input: {
-    width: "100%",
-    height: 45,
-    paddingLeft: 20,
-    marginBottom: 20,
-    backgroundColor: "#f4f4f4",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    fontSize: 16,
-    color: "#333",
-  },
+  }
 });
