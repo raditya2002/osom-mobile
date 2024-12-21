@@ -38,7 +38,7 @@ export default function AppNavigator() {
   const auth = useAuth();
 
   return (
-    <Stack.Navigator initialRouteName="Dashboard">
+    <Stack.Navigator>
       {auth.user ? (
         <>
           {/* <Stack.Screen
@@ -46,26 +46,14 @@ export default function AppNavigator() {
                         component={TabNavigator}
                         options={{ title: "Main", headerShown: false }}
                     /> */}
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Dashboard"
             component={Dashboard}
             options={{ headerShown: false }}
-          /> */}
+          />
         </>
       ) : (
         <>
-          {/* Nanti Matiin aja ya ini fif buat ngetest fungsi Validasi doang */}
-          <Stack.Screen
-            name="StartScreen"
-            component={Start}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Dashboard"
-            component={Dashboard}
-            options={{ headerShown: false }}
-          />
-          {/* Sampai sini  buat ngetestnya */}
           <Stack.Screen
             name="Start"
             component={Start}
