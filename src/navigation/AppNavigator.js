@@ -38,7 +38,7 @@ export default function AppNavigator() {
   const auth = useAuth();
 
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="Dashboard">
       {auth.user ? (
         <>
           {/* <Stack.Screen
