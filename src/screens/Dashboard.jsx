@@ -25,6 +25,10 @@ export default function Dashboard({ navigation }) {
     }
   };
 
+  const handleStartGame = () => {
+    navigation.navigate('Character');
+  }
+
   const [fontsLoaded] = useFonts({
     CherryBombOne: require("../assets/font/CherryBombOne-Regular.ttf"),
     MontserratReg: require("../assets/font/Montserrat-Regular.ttf"),
@@ -95,7 +99,7 @@ export default function Dashboard({ navigation }) {
             </View>
           </ScrollView>
           <View style={styles.playButton}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleStartGame}>
               <Text style={styles.playText}>Start Playing!</Text>
             </TouchableOpacity>
           </View>

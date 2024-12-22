@@ -7,6 +7,8 @@ import Register from "../screens/Register";
 import Start from "../screens/StartScreen";
 import { useAuth } from "../context/AuthContext";
 import SplashScreen from "../screens/SplashScreen";
+import Character from "../screens/Character";
+import InGame from "../screens/InGame";
 // import { Icon } from "react-native-vector-icons/Icon";
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +53,16 @@ export default function AppNavigator() {
             name="Dashboard"
             component={Dashboard}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Character"
+            component={Character}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="InGame"
+            component={InGame}
+            options={{headerShown: false}}
           />
         </>
       ) : (
