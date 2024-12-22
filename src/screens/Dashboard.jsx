@@ -19,11 +19,11 @@ export default function Dashboard({ navigation }) {
   const handleLogout = async () => {
     try {
       await logout();
-      Alert.alert("Logged Out")
+      Alert.alert("Logged Out");
     } catch (e) {
-      Alert.alert(e.message)
+      Alert.alert(e.message);
     }
-  }
+  };
 
   const handleStartGame = () => {
     navigation.navigate('Character');

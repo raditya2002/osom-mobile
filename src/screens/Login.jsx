@@ -25,8 +25,8 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
   // Validate
   const [errors, setErrors] = useState({});
-  const [isCheckedError, setIsCheckedError] = useState("");
-  const [isChecked, setIsChecked] = useState("");
+  // const [isCheckedError, setIsCheckedError] = useState("");
+  // const [isChecked, setIsChecked] = useState("");
   // Buat Modal
   const [modalVisible, setModalVisible] = useState(false);
   const { login: setLoginState } = useAuth();
@@ -41,12 +41,8 @@ export default function Login({ navigation }) {
         messagePasswordError: "Password harus lebih dari 7 karakter.",
       });
       return false;
-    } else if (!isChecked) {
-      setIsCheckedError("Anda harus menyetujui syarat & ketentuan.");
-      return false;
     }
     setErrors({});
-    setIsCheckedError(""); // Reset error ketika validasi sukses
     return true;
   };
 
@@ -59,12 +55,12 @@ export default function Login({ navigation }) {
       try {
         const userData = {
           email: email,
-          password: password
-        }
-        const res = await restLogin(userData)
-        setLoginState(res.token)
+          password: password,
+        };
+        const res = await restLogin(userData);
+        setLoginState(res.token);
       } catch (e) {
-        Alert.alert(e.message)
+        Alert.alert(e.message);
       }
     }
   };
@@ -110,28 +106,6 @@ export default function Login({ navigation }) {
           )}
 
           {/* Validate dan Term and Condition */}
-          <View style={{ marginBottom: 20 }}>
-            <View style={styles.termsContainer}>
-              <View style={styles.checkboxContainer}>
-                <Checkbox
-                  status={isChecked ? "checked" : "unchecked"}
-                  color="#088A85"
-                  onPress={() => setIsChecked((prev) => !prev)}
-                // style={{ width: 10, height: 10, alignItems: "center" }}
-                />
-              </View>
-              <Text style={styles.termsText}>
-                Accepted{" "}
-                <TouchableOpacity onPress={() => setModalVisible(true)}>
-                  <Text style={styles.termsLink}>Term And Condition</Text>
-                </TouchableOpacity>
-                <Text style={{ color: "red" }}> *</Text>
-              </Text>
-            </View>
-            {isCheckedError && (
-              <Text style={styles.errorText}>{isCheckedError}</Text>
-            )}
-          </View>
 
           <Modal
             animationType="slide"
@@ -166,10 +140,10 @@ export default function Login({ navigation }) {
           </Modal>
 
           <CustomButton
-            title='Login'
+            title="Login"
             onPress={handleLogin}
-            bgColor='#F8E51E'
-            textColor='white'
+            bgColor="#F8E51E"
+            textColor="white"
           />
           <TouchableOpacity onPress={handleRegister}>
             <Text style={styles.link}>
@@ -314,5 +288,5 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     color: "#333",
     textAlign: "justify",
-  }
+  },
 });
