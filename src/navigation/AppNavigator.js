@@ -6,6 +6,7 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Start from "../screens/StartScreen";
 import { useAuth } from "../context/AuthContext";
+import SplashScreen from "../screens/SplashScreen";
 // import { Icon } from "react-native-vector-icons/Icon";
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +55,11 @@ export default function AppNavigator() {
         </>
       ) : (
         <>
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Start"
             component={Start}
