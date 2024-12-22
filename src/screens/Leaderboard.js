@@ -7,7 +7,6 @@ import {
   View,
   ImageBackground,
   ScrollView,
-  Alert,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import { useFonts } from "expo-font";
@@ -15,15 +14,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default function Dashboard({ navigation }) {
   const { logout } = useAuth();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      Alert.alert("Logged Out")
-    } catch (e) {
-      Alert.alert(e.message)
-    }
-  }
 
   const [fontsLoaded] = useFonts({
     CherryBombOne: require("../assets/font/CherryBombOne-Regular.ttf"),
@@ -46,7 +36,6 @@ export default function Dashboard({ navigation }) {
               style={{
                 marginBottom: -6,
               }}
-              onPress={handleLogout}
             >
               <Icon name="log-out-outline" size={45} />
             </TouchableOpacity>
