@@ -10,7 +10,7 @@ const CustomButton = ({
 
     const [fontsLoaded] = useFonts({
         CherryBombOne: require("../assets/font/CherryBombOne-Regular.ttf"),
-        MontserratReg: require("../assets/font/Montserrat-Regular.ttf"),
+        MontserratMed: require("../assets/font/Montserrat-Medium.ttf"),
     });
     if (!fontsLoaded) {
         return null;
@@ -27,15 +27,13 @@ const styles = StyleSheet.create({
     buttonLogin: {
         width: "100%",
         paddingVertical: 12,
-        paddingHorizontal: 20,
         borderRadius: 30,
         alignItems: "center",
         justifyContent: "center",
     },
     textButton: {
         fontSize: 16,
-        fontWeight: "bold",
-        fontFamily: "MontserratReg",
+        fontFamily: "MontserratMed",
     },
 })
 

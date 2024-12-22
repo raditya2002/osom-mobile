@@ -117,7 +117,7 @@ export default function Login({ navigation }) {
                   status={isChecked ? "checked" : "unchecked"}
                   color="#088A85"
                   onPress={() => setIsChecked((prev) => !prev)}
-                  // style={{ width: 10, height: 10, alignItems: "center" }}
+                // style={{ width: 10, height: 10, alignItems: "center" }}
                 />
               </View>
               <Text style={styles.termsText}>
